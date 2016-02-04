@@ -1,3 +1,5 @@
+// 別のタブでブラウザ開かれたらCSRF TOKENでひっかかるので、ブラウザ再読み込みしてくださいってメッセージ出す
+
 'use strict';
 import find from 'lodash.find';
 import React from 'react';
@@ -24,14 +26,25 @@ export default class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(target, evt) {
-    if (target === 'work') {
-      this.fileExists();
+    const {value} = evt.target;
+    let state = {[`${target}`]: value};
+
+    if (target === 'exhibit') {
+      const exhibitData = find(this.state.data, {id: value});
+
+      // state.work = exhibitData.works[0].id;
+      state.work = exhibitData.works.length
+        ? exhibitData.works[0].id
+        : '';
     }
 
-    this.setState({[`${target}`]: evt.target.value});
+    (async () => {
+      state.status = await this.getFileExists();
+      this.setState(state);
+    })();
   }
-  fileExists() {
-    fetch('./fileList.php', {
+  getFileExists() {
+    return fetch('./fileList.php', {
       method: 'get',
       credentials: 'same-origin',
       headers: {
@@ -41,12 +54,7 @@ export default class App extends React.Component {
       .then(resp => resp.json())
       .then(files => {
         const isExists = files.includes(`${this.state.work}.zip`);
-
-        if (isExists) {
-          return this.setState({status: 'done'});
-        }
-
-        this.setState({status: 'entry'});
+        return isExists ? 'done' : 'entry';
       });
   }
   handleCheck(evt) {
@@ -106,15 +114,20 @@ export default class App extends React.Component {
       });
   }
   componentDidMount() {
-    this.fileExists();
+    (async () => {
+      const status = await this.getFileExists();
+      this.setState({status});
+    })();
   }
   render() {
     const {data, exhibit, work, checked, status} = this.state;
     const exhibitData = find(data, {id: exhibit});
     const exhibitName = exhibitData.name;
     const workData = exhibitData.works;
+
     // const workName = find(workData, {id: work}).name;
     const workName = (find(workData, {id: work}) || {}).name;
+
     const isEntry = status === 'entry';
     const hasDone = status === 'done';
     const hasFaild = status === 'error';
@@ -125,7 +138,15 @@ export default class App extends React.Component {
 
     return (
       <div className='container'>
-        <h1>ECC EXPO 2016 選考作品アップローダー</h1>
+        <h1>
+          <img
+            src='./img/logo.svg'
+            width='270'
+            height='28'
+            alt='ECC EXPO 2016' />
+          {' '}
+          選考作品アップローダー
+        </h1>
         <p className='lead'>手順に沿ってファイルの登録を行ってください。</p>
 
         <form
@@ -171,15 +192,45 @@ export default class App extends React.Component {
           </dl>
 
           <div className='mt3em'>
-            <h2>登録方法の説明</h2>
-            <p className='lead'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <h2>提出方法について</h2>
+            <p>
+              入選おめでとうございます。<br />
+              入選にあたり、<strong>作品情報</strong>と<strong>３種類の画像</strong>のご提出をお願いします。
             </p>
             <p>
-              <a className='btn btn-block' href='#' download>
+              まず、以下のボタンをクリックしてテンプレートファイルをダウンロードしてください。<br />
+              [ template.zip ] というファイルがダウンロードできますので、解凍して中身をご確認ください。
+            </p>
+            <p>
+              <a className='btn btn-block' href='./data/template.zip' download>
                 Download Template Data
               </a>
             </p>
+            <p>
+              フォルダ内には、Excelとpsdデータが入っています。
+            </p>
+            <p>
+              Excelファイルに必要な情報が一覧になっているので、それぞれの入力欄に適切な値を入力してください。
+            </p>
+            <p>
+              また、同Excelファイル内に、画像の提出方法について記載しています。<br />
+              そちらをご確認の上、画像を作成してください。
+            </p>
+            <p>
+              データが完成したら、フォルダをzip形式に圧縮し、以下のフォームからアップロードしてください。
+              部門と作品名が自分のものと一致しているか、必ずご確認ください。
+            </p>
+            <ol>
+              <li>
+                <strong className='text-closed'>ファイルの再アップロードはできません。</strong>ファイルに間違いが無いことを確認してアップロードして下さい。
+                </li>
+              <li>
+                もし、ファイル内容に不備があった場合、担任（または担当）の先生に速やかに連絡して下さい。
+              </li>
+              <li>
+                <strong className='text-closed'>締め切り厳守です。</strong>
+              </li>
+            </ol>
           </div>
 
           <div className={classNames(classes)}>

@@ -35,9 +35,13 @@ if (file_exists($path)) {
 }
 
 // dir is not exists
-if (!is_dir(UPLOAD_DIR)) {
-  mkdir(UPLOAD_DIR);
-}
+// if (!is_dir(UPLOAD_DIR)) {
+//   mkdir(UPLOAD_DIR, 0777);
+//
+//   if (fileperms(UPLOAD_DIR) !== 0777) {
+//     chmod(UPLOAD_DIR, 0777);
+//   }
+// }
 
 // save file
 if (!move_uploaded_file($_FILES['upfile']['tmp_name'], $path)) {

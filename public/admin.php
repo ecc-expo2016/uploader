@@ -11,7 +11,7 @@ setcookie('CSRF_TOKEN', $token);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Uploader of ECC EXPO 2016</title>
     <meta name="csrf-token" content="<?= $token?>">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
   </head>
 
   <body>
@@ -21,6 +21,6 @@ setcookie('CSRF_TOKEN', $token);
       <div id="list"></div>
     </div>
 
-    <script src="./admin.js"></script>
+    <script src="./js/admin.js"></script>
   </body>
 </html>

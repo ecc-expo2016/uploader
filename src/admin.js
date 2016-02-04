@@ -37,7 +37,7 @@ const createList = (files, list) => {
                 ${isExists ? `
                   <span class="state state-open">Done</span>
                 ` : `
-                  <span class="state state-closed">Yet</span>
+                  <span class="state state-closed">None</span>
                 `}
               </td>
               <td>${work.name}</td>

@@ -2,6 +2,16 @@ $container-width: 40rem;
 $body-font-size: 16px;
 @import '../node_modules/primer-css/scss/primer';
 
+.container {
+  margin-bottom: 1rem;
+}
+
+h1 img {
+  position: relative;
+  top: -.1em;
+  vertical-align: middle;
+}
+
 .mt3em {
   margin-top: 3em !important;
 }
