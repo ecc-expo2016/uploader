@@ -29,7 +29,7 @@ const createList = (files, list) => {
             <tr>
               <td class="admin-file">
                 ${isExists ? `
-                  <a class="btn btn-sm" href="./uploads/${fileName}" download>
+                  <a class="btn btn-sm" href="./_uploads/${fileName}" download>
                     zip
                   </a>
                 ` : ''}</td>
