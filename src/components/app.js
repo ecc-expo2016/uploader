@@ -6,7 +6,7 @@ import React from 'react';
 import classNames from 'classnames';
 import data from '../data';
 
-const MAX_FILE_SIZE = 52428800; // 50MB
+const MAX_FILE_SIZE = 104857600; // 100MB
 const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
 
 export default class App extends React.Component {
@@ -66,7 +66,16 @@ export default class App extends React.Component {
     const input = form.querySelector('input[type="file"]');
     const upfile = input.files[0];
     const isOverloaded = upfile.size > MAX_FILE_SIZE;
-    const isZip = upfile.type === 'application/zip';
+    let isZip = false;
+
+    switch (upfile.type) {
+      case 'application/octet-stream':
+      case 'application/zip':
+      case 'application/x-zip':
+      case 'application/x-zip-compressed':
+        isZip = true;
+        break;
+    }
 
     if (isOverloaded) {
       console.log('file size is too large');
@@ -98,10 +107,13 @@ export default class App extends React.Component {
           return resp;
         }
 
+        // return resp.text();
+
         const err = new Error(resp.statusText);
         err.response = resp;
         throw err;
       })
+      // .then(r => console.log(r))
       .then(() => {
         input.value = '';
 
@@ -167,7 +179,10 @@ export default class App extends React.Component {
               [ template.zip ] というファイルがダウンロードできますので、解凍して中身をご確認ください。
             </p>
             <p>
-              <a className='btn btn-block' href='./data/template.zip' download>
+              <a
+                className='btn btn-block'
+                href='./data/template.zip'
+                download>
                 Download Template Data
               </a>
             </p>
@@ -211,6 +226,7 @@ export default class App extends React.Component {
                 className='select'
                 value={exhibit}
                 onChange={this.handleChange.bind(this, 'exhibit')}
+                disabled={isUploading}
                 required>
                 {data.map(datum =>
                   <option
@@ -230,6 +246,7 @@ export default class App extends React.Component {
                 className='select'
                 value={work}
                 onChange={this.handleChange.bind(this, 'work')}
+                disabled={isUploading}
                 required>
                 {workData.map(work =>
                   <option
@@ -245,6 +262,7 @@ export default class App extends React.Component {
             <p>
               <input
                 type='file'
+                disabled={isUploading}
                 required />
             </p>
             <div className='form-checkbox mt3em'>
@@ -253,6 +271,7 @@ export default class App extends React.Component {
                   type='checkbox'
                   checked={checked}
                   onChange={this.handleCheck}
+                  disabled={isUploading}
                   required />
                   {exhibitName}部門の
                   <mark>{workName}</mark>

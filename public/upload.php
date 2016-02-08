@@ -11,26 +11,39 @@ $valid = isset($_SERVER['HTTP_X_CSRF_TOKEN']) &&
 // invalid request
 if (!$valid) {
   http_response_code(400);
+  // echo 'invalid';
+  // echo "\n";
+  // echo $_FILES['upfile']['error'];
   exit;
 }
 
 // file size is too large
 if ($_FILES['upfile']['size'] > MAX_FILE_SIZE) {
   http_response_code(400);
+  // echo 'file size';
   exit;
 }
 
 // file isn't zip
 $finfo = new finfo(FILEINFO_MIME_TYPE);
-if ($finfo->file($_FILES['upfile']['tmp_name']) !== 'application/zip') {
-  http_response_code(400);
-  exit;
+switch ($finfo->file($_FILES['upfile']['tmp_name'])) {
+  case 'application/octet-stream':
+  case 'application/zip':
+  case 'application/x-zip':
+  case 'application/x-zip-compressed':
+    break;
+
+  default:
+    http_response_code(400);
+    // echo 'file type';
+    exit;
 }
 
 $path = "{$_(UPLOAD_DIR)}/${_POST['id']}.zip";
 // file exists already
 if (file_exists($path)) {
   http_response_code(400);
+  // echo 'exists already';
   exit;
 }
 
@@ -47,6 +60,7 @@ if (file_exists($path)) {
 if (!move_uploaded_file($_FILES['upfile']['tmp_name'], $path)) {
   // file can't save
   http_response_code(400);
+  // echo 'can not save';
   exit;
 }
 chmod($path, 0644);
