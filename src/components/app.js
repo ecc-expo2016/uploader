@@ -6,7 +6,7 @@ import React from 'react';
 import classNames from 'classnames';
 import data from '../data';
 
-const MAX_FILE_SIZE = 10485760; // 10MB
+const MAX_FILE_SIZE = 52428800; // 50MB
 const CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').content;
 
 export default class App extends React.Component {
@@ -83,6 +83,8 @@ export default class App extends React.Component {
     formData.append('id', this.state.work);
     formData.append('upfile', upfile);
 
+    this.setState({status: 'uploading'});
+
     fetch(form.action, {
       method: form.method,
       credentials: 'same-origin',
@@ -131,6 +133,7 @@ export default class App extends React.Component {
     const isEntry = status === 'entry';
     const hasDone = status === 'done';
     const hasFaild = status === 'error';
+    const isUploading = status === 'uploading';
     const classes = {
       mt3em: true,
       'is-hidden': hasDone
@@ -262,7 +265,8 @@ export default class App extends React.Component {
             <div className='form-actions'>
               <button
                 className='btn btn-primary'
-                type='submit'>
+                type='submit'
+                disabled={isUploading}>
                 Upload
               </button>
               {hasFaild && (
