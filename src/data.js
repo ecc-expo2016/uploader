@@ -6,50 +6,45 @@ export default [
     name: 'ゲームソフト',
     works: [
       {
-        id: 'gs01',
-        name: 'さくひんめい１'
-      }, {
-        id: 'gs02',
-        name: 'さくひんめい２'
-      }, {
-        id: 'gs03',
-        name: 'さくひんめい３'
+        id: '',
+        name: '未登録'
       }
+      // {
+      //   id: 'i01',
+      //   name: ''
+      // }, {
+      //   id: 'i02',
+      //   name: ''
+      // }, {
+      //   id: 'i03',
+      //   name: ''
+      // }, {
+      //   id: 'i04',
+      //   name: ''
+      // }, {
+      //   id: 'i05',
+      //   name: ''
+      // }, {
+      //   id: 'i06',
+      //   name: ''
+      // }
     ]
   }, {
     id: 'gameplannning',
     name: 'ゲーム企画',
     works: [
       {
-        id: '',
+        id: 'h01',
         name: '去斬華'
       }, {
-        id: '',
+        id: 'h02',
         name: 'チルボット'
       }, {
-        id: '',
+        id: 'h03',
         name: 'Frowers'
       }, {
-        id: '',
+        id: 'h04',
         name: '１ week D'
-      }, {
-        id: '',
-        name: '望遠鏡と大きな世界'
-      }, {
-        id: '',
-        name: 'Roll Play！'
-      }, {
-        id: '',
-        name: 'Mr.Phantom in Grasswarld'
-      }, {
-        id: '',
-        name: '人闇'
-      }, {
-        id: '',
-        name: 'メイクサロン　Doll Up'
-      }, {
-        id: '',
-        name: 'Night OF THE DEAD'
       }
     ]
   }, {
@@ -57,22 +52,22 @@ export default [
     name: '3Dイラスト',
     works: [
       {
-        id: '',
+        id: 'f01',
         name: 'Chrysocolla'
       }, {
-        id: '',
+        id: 'f02',
         name: '大暴れ！金魚すくい？'
       }, {
-        id: '',
+        id: 'f03',
         name: 'Mushroom House'
       }, {
-        id: '',
+        id: 'f04',
         name: '旋廻せし焔の泡'
       }, {
-        id: '',
+        id: 'f05',
         name: 'VAPORS'
       }, {
-        id: '',
+        id: 'f06',
         name: 'BMW-i8'
       }
     ]
@@ -81,22 +76,22 @@ export default [
     name: '2Dイラスト',
     works: [
       {
-        id: '',
+        id: 'g01',
         name: '若年騎士アルベール'
       }, {
-        id: '',
+        id: 'g02',
         name: 'ラフレシアの旅'
       }, {
-        id: '',
+        id: 'g03',
         name: '天使の日'
       }, {
-        id: '',
+        id: 'g04',
         name: '煉獄の番人 イフリート'
       }, {
-        id: '',
+        id: 'g05',
         name: '恋歌悠遊浪漫譚'
       }, {
-        id: '',
+        id: 'g06',
         name: '希望への一歩'
       }
     ]
@@ -105,22 +100,22 @@ export default [
     name: '3Dアニメーション',
     works: [
       {
-        id: '',
+        id: 'e01',
         name: 'Big Bone Battle'
       }, {
-        id: '',
+        id: 'e02',
         name: 'Emptiness'
       }, {
-        id: '',
+        id: 'e03',
         name: 'ゲーム「プロジェクトスティンガー」　ムービー「決戦」'
       }, {
-        id: '',
+        id: 'e04',
         name: 'DRAGON 怒りの逆襲'
       }, {
-        id: '',
+        id: 'e05',
         name: '花妖精の輪舞曲'
       }, {
-        id: '',
+        id: 'e06',
         name: 'Hunter Girl_'
       }
     ]
@@ -129,31 +124,73 @@ export default [
     name: '作画アニメーション',
     works: [
       {
-        id: '',
+        id: 'd01',
         name: 'otomodachi'
       }, {
-        id: '',
+        id: 'd02',
         name: 'コンプリート・システム　<劇場予告PV>'
       }, {
-        id: '',
+        id: 'd03',
         name: 'Cut off <re:make>'
       }, {
-        id: '',
+        id: 'd04',
         name: 'Inherit Harmony'
       }
     ]
   }, {
     id: 'webdesign',
     name: 'Webデザイン',
-    works: []
+    works: [
+      {
+        id: 'b01',
+        name: 'Precious Letter'
+      }, {
+        id: 'b02',
+        name: 'DRIPET'
+      }, {
+        id: 'b03',
+        name: 'KARUKU'
+      }, {
+        id: 'b04',
+        name: 'Hey!Job'
+      }
+    ]
   }, {
     id: 'graphicdesign',
     name: 'グラフィックデザイン',
-    works: []
+    works: [
+      {
+        id: 'a01',
+        name: 'De’Hsuan'
+      }, {
+        id: 'a02',
+        name: 'Sweet’s'
+      }, {
+        id: 'a03',
+        name: 'TRY IT'
+      }, {
+        id: 'a04',
+        name: '「秘められた力」'
+      }
+    ]
   }, {
     id: 'systemapplication',
     name: 'システムアプリケーション',
-    works: []
+    works: [
+      {
+        id: 'c01',
+        name: 'FC3(エフシースリー)'
+      }, {
+        id: 'c02',
+        name: 'PS2(ピーエスツー)'
+      }, {
+        id: 'c03',
+        name: 'ラリー・ツクール・制作部'
+      }, {
+        id: 'c04',
+        name: 'チーム村田'
+      }
+    ]
   },
 ].map(ex => {
   ex.works = ex.works.map(w => {

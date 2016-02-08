@@ -6,14 +6,13 @@
     "start": "npm run serve & npm run watch",
     "serve": "php -S localhost:5000 -t public",
     "watch": "npm run watch-js:main & npm rum watch-js:admin & npm run watch-css",
-    "build": "npm run build-js:main & npm run build-js:admin & npm run build-css",
+    "build": "npm run build-js:main & npm run build-js:admin & npm run build-css; wait; echo 'done'",
     "watch-js:main": "watchify src/main.js -o public/js/app.js -v",
     "build-js:main": "browserify src/main.js | uglifyjs -cm > public/js/app.js",
     "watch-js:admin": "watchify src/admin.js -o public/js/admin.js -v",
     "build-js:admin": "browserify src/admin.js | uglifyjs -cm > public/js/admin.js",
     "watch-css": "node-sass -w src/style.scss -o public/css",
-    "build-css": "node-sass src/style.scss | postcss -u cssnano -o public/css/style.css",
-    "deploy": ". deploy.sh"
+    "build-css": "node-sass src/style.scss | postcss -u cssnano -o public/css/style.css"
   },
   "repository": {
     "type": "git",

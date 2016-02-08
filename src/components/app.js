@@ -39,11 +39,11 @@ export default class App extends React.Component {
     }
 
     (async () => {
-      state.status = await this.getFileExists();
+      state.status = await this.getFileExists(state.work);
       this.setState(state);
     })();
   }
-  getFileExists() {
+  getFileExists(work = this.state.work) {
     return fetch('./fileList.php', {
       method: 'get',
       credentials: 'same-origin',
@@ -53,7 +53,7 @@ export default class App extends React.Component {
     })
       .then(resp => resp.json())
       .then(files => {
-        const isExists = files.includes(`${this.state.work}.zip`);
+        const isExists = files.includes(`${work}.zip`);
         return isExists ? 'done' : 'entry';
       });
   }
@@ -153,7 +153,53 @@ export default class App extends React.Component {
           action='./upload.php'
           method='post'
           onSubmit={isEntry && this.handleSubmit}>
-          <dl className='form mt3em'>
+          <div>
+            <h2>提出方法について</h2>
+            <p>
+              入選おめでとうございます。<br />
+              入選にあたり、<strong>作品情報</strong>と<strong>３種類の画像</strong>のご提出をお願いします。
+            </p>
+            <p>
+              まず、以下のボタンをクリックしてテンプレートファイルをダウンロードしてください。<br />
+              [ template.zip ] というファイルがダウンロードできますので、解凍して中身をご確認ください。
+            </p>
+            <p>
+              <a className='btn btn-block' href='./data/template.zip' download>
+                Download Template Data
+              </a>
+            </p>
+            <p>
+              フォルダ内には、Excel と psd データが入っています。
+            </p>
+            <ol>
+              <li>
+                Excel ファイルに必要な情報が一覧になっているので、それぞれの入力欄に適切な値を入力してください。
+              </li>
+              <li>
+                同 Excel ファイル内に、画像の提出方法について記載しています。<br />
+                そちらをご確認の上、画像を作成してください。
+              </li>
+              <li>
+                データが完成したら、フォルダを zip 形式に圧縮し、<strong>部門と作品名を選択の上</strong>、以下のフォームからアップロードしてください。<br />
+                部門と作品名が自分のものと一致しているか、必ずご確認ください。
+              </li>
+            </ol>
+          </div>
+
+          <div className='mt3em'>
+            <h2>注意事項</h2>
+            <ol>
+              <li>
+                <strong className='text-closed'>ファイルの再アップロードはできません。</strong>ファイルに間違いが無いことを確認してアップロードして下さい。<br />
+                もし、ファイル内容に不備があった場合、担任（または担当）の先生に速やかに連絡して下さい。
+              </li>
+              <li>
+                <strong className='text-closed'>締め切り厳守です。</strong>
+              </li>
+            </ol>
+          </div>
+
+          <dl className='mt3em'>
             <dt>
               <h2>部門を選択してください</h2>
             </dt>
@@ -172,7 +218,7 @@ export default class App extends React.Component {
             </dd>
           </dl>
 
-          <dl className='form mt3em'>
+          <dl className='mt3em'>
             <dt>
               <h2>作品を選択してください</h2>
             </dt>
@@ -190,48 +236,6 @@ export default class App extends React.Component {
               </select>
             </dd>
           </dl>
-
-          <div className='mt3em'>
-            <h2>提出方法について</h2>
-            <p>
-              入選おめでとうございます。<br />
-              入選にあたり、<strong>作品情報</strong>と<strong>３種類の画像</strong>のご提出をお願いします。
-            </p>
-            <p>
-              まず、以下のボタンをクリックしてテンプレートファイルをダウンロードしてください。<br />
-              [ template.zip ] というファイルがダウンロードできますので、解凍して中身をご確認ください。
-            </p>
-            <p>
-              <a className='btn btn-block' href='./data/template.zip' download>
-                Download Template Data
-              </a>
-            </p>
-            <p>
-              フォルダ内には、Excelとpsdデータが入っています。
-            </p>
-            <p>
-              Excelファイルに必要な情報が一覧になっているので、それぞれの入力欄に適切な値を入力してください。
-            </p>
-            <p>
-              また、同Excelファイル内に、画像の提出方法について記載しています。<br />
-              そちらをご確認の上、画像を作成してください。
-            </p>
-            <p>
-              データが完成したら、フォルダをzip形式に圧縮し、以下のフォームからアップロードしてください。
-              部門と作品名が自分のものと一致しているか、必ずご確認ください。
-            </p>
-            <ol>
-              <li>
-                <strong className='text-closed'>ファイルの再アップロードはできません。</strong>ファイルに間違いが無いことを確認してアップロードして下さい。
-                </li>
-              <li>
-                もし、ファイル内容に不備があった場合、担任（または担当）の先生に速やかに連絡して下さい。
-              </li>
-              <li>
-                <strong className='text-closed'>締め切り厳守です。</strong>
-              </li>
-            </ol>
-          </div>
 
           <div className={classNames(classes)}>
             <h2>ファイルをアップロード</h2>
