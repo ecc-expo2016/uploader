@@ -65,28 +65,16 @@ export default class App extends React.Component {
     const form = evt.target;
     const input = form.querySelector('input[type="file"]');
     const upfile = input.files[0];
+    const isZip = /.*\.zip$/.test(upfile.name);
     const isOverloaded = upfile.size > MAX_FILE_SIZE;
-    let isZip = false;
 
-    switch (upfile.type) {
-      case 'application/octet-stream':
-      case 'application/zip':
-      case 'application/x-zip':
-      case 'application/x-zip-compressed':
-      case 'application/x-compress':
-      case 'application/x-compressed':
-      case 'multipart/x-zip':
-        isZip = true;
-        break;
-    }
-
-    if (isOverloaded) {
-      console.log('file size is too large');
+    if (!isZip) {
+      alert('zip形式のファイルを選択してください。');
       this.setState({status: 'error'});
       return;
     }
-    if (!isZip) {
-      console.log('file type isn\'t zip');
+    if (isOverloaded) {
+      alert('ファイルサイズは10MB以下にしてください。');
       this.setState({status: 'error'});
       return;
     }

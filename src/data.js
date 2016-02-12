@@ -6,28 +6,30 @@ export default [
     name: 'ゲームソフト',
     works: [
       {
-        id: '',
-        name: '未登録'
+        id: 'i01',
+        name: 'Project Stinger'
+      }, {
+        id: 'i02',
+        name: 'Outlaw Sports Festival 2'
+      }, {
+        id: 'i03',
+        name: 'Time Bomb'
+      }, {
+        id: 'i04',
+        name: 'キラメキ☆スター'
+      }, {
+        id: 'i05',
+        name: 'すしいくさ'
+      }, {
+        id: 'i06',
+        name: 'ペーパーボーズ'
+      }, {
+        id: 'i07',
+        name: 'Ruinval'
+      }, {
+        id: 'i08',
+        name: 'TOMB OF THE OCEAN'
       }
-      // {
-      //   id: 'i01',
-      //   name: ''
-      // }, {
-      //   id: 'i02',
-      //   name: ''
-      // }, {
-      //   id: 'i03',
-      //   name: ''
-      // }, {
-      //   id: 'i04',
-      //   name: ''
-      // }, {
-      //   id: 'i05',
-      //   name: ''
-      // }, {
-      //   id: 'i06',
-      //   name: ''
-      // }
     ]
   }, {
     id: 'gameplannning',
