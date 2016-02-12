@@ -63,12 +63,6 @@ export default [
       }, {
         id: 'f04',
         name: '旋廻せし焔の泡'
-      }, {
-        id: 'f05',
-        name: 'VAPORS'
-      }, {
-        id: 'f06',
-        name: 'BMW-i8'
       }
     ]
   }, {
@@ -87,12 +81,6 @@ export default [
       }, {
         id: 'g04',
         name: '煉獄の番人 イフリート'
-      }, {
-        id: 'g05',
-        name: '恋歌悠遊浪漫譚'
-      }, {
-        id: 'g06',
-        name: '希望への一歩'
       }
     ]
   }, {
@@ -111,12 +99,6 @@ export default [
       }, {
         id: 'e04',
         name: 'DRAGON 怒りの逆襲'
-      }, {
-        id: 'e05',
-        name: '花妖精の輪舞曲'
-      }, {
-        id: 'e06',
-        name: 'Hunter Girl_'
       }
     ]
   }, {

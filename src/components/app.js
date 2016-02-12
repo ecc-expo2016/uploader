@@ -73,6 +73,9 @@ export default class App extends React.Component {
       case 'application/zip':
       case 'application/x-zip':
       case 'application/x-zip-compressed':
+      case 'application/x-compress':
+      case 'application/x-compressed':
+      case 'multipart/x-zip':
         isZip = true;
         break;
     }

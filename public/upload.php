@@ -31,6 +31,9 @@ switch ($finfo->file($_FILES['upfile']['tmp_name'])) {
   case 'application/zip':
   case 'application/x-zip':
   case 'application/x-zip-compressed':
+  case 'application/x-compress':
+  case 'application/x-compressed':
+  case 'multipart/x-zip':
     break;
 
   default:
