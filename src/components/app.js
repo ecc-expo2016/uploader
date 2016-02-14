@@ -279,10 +279,14 @@ export default class App extends React.Component {
                 disabled={isUploading}>
                 Upload
               </button>
+              {isUploading && (
+                <p className='text-right text-pending'>
+                  現在アップロード中です。　
+                </p>
+              )}
               {hasFaild && (
                 <p className='text-right text-closed'>
-                  アップロードに失敗しました。
-                  {' '}
+                  アップロードに失敗しました。　
                 </p>
               )}
             </div>
